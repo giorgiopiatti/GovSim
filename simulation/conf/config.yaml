@@ -1,0 +1,28 @@
+code_version: v6.4
+group_name: ''
+
+llm: 
+  path: TheBloke/Nous-Hermes-2-Mixtral-8x7B-DPO-GPTQ
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+
+seed: 42
+debug: false
+
+# Ideally we would only need to change the following two lines to run a different experiments
+  
+
+defaults:
+- experiment: basic
+
+
+hydra:
+  run:
+    dir: ./outputs/${uuid:}
+  searchpath:
+    - ./simulation/scenarios/fishing/conf
+    - ./simulation/scenarios/sheep/conf
+    - ./simulation/scenarios/pollution/conf

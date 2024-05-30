@@ -1,0 +1,61 @@
+name: fishing_${code_version}/${group_name}
+scenario: fishing
+
+defaults:
+  - persona@personas.persona_0: baseline_fisherman
+  - persona@personas.persona_1: baseline_fisherman
+  - persona@personas.persona_2: baseline_fisherman
+  - persona@personas.persona_3: baseline_fisherman
+  - persona@personas.persona_4: baseline_fisherman
+
+env:
+  name: fish_baseline_concurrent
+  class_name: fishing_perturbation_concurrent_env # use to select which code 
+  max_num_rounds: 12
+  initial_resource_in_pool: 100
+  poupulation_change_after_round: double_100_cap
+  observation_other_agents_harvesting: true # true, false 
+  language_nature: unconstrained #none, unconstrained
+  num_agents: 5
+  harvesting_order: concurrent # random-sequential, concurrent
+  assign_resource_strategy: stochastic # proportional, stochastic
+  inject_universalization: false
+  inject_scenario_dynamic: false
+  perturbations: []
+    # - perturbation:
+    #     round: none # [0-max_num_rounds)
+    #     # as some of the env above
+    
+
+personas:
+  num: 5
+  persona_0: 
+    name: John
+  persona_1:
+    name: Kate
+  persona_2:
+    name: Jack
+  persona_3:
+    name: Emma
+  persona_4:
+    name: Luke
+
+agent:
+  agent_package: persona_v3
+  system_prompt: v3
+  cot_prompt: think_step_by_step # think_step_by_step | deep_breath
+  name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+  act:
+    universalization_prompt: false # true, false
+    harvest_strategy: one_step #or: one_step, suistanability_guided, suistanability_idea
+    consider_identity_persona: true
+
+  converse:
+    inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+    inject_resource_observation_strategy: manager # individual, manager
+    max_conversation_steps: 10
+    prompt_utterance: one_shot # one_shot, cot
+
+  store:
+    expiration_delta:
+      days: 63

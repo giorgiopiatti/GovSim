@@ -1,0 +1,1 @@
+from .persona import FishingPersona

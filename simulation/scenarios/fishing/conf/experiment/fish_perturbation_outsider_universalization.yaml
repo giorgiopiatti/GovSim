@@ -1,0 +1,19 @@
+defaults:
+  - fish_baseline_concurrent_universalization
+  - override persona@personas.persona_0: traditional_fisherman
+  - override persona@personas.persona_1: traditional_fisherman
+  - override persona@personas.persona_2: traditional_fisherman
+  - override persona@personas.persona_3: traditional_fisherman
+  - override persona@personas.persona_4: outsider_fisherman
+
+env:
+  name: fish_perturbation_outsider_universalization
+  class_name: fishing_perturbation_env # use to select which code 
+  num_agents: 4
+  max_num_rounds: 15
+
+  perturbations:
+    - perturbation:
+        round: 3
+        num_agents: 5
+        type: insert_outsider

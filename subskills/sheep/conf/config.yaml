@@ -1,0 +1,24 @@
+code_version: v7.0
+
+split: single
+
+llm: 
+  path: TheBloke/Nous-Hermes-2-Mixtral-8x7B-DPO-GPTQ
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+  cot_prompt: think_step_by_step
+  few_shots: 0
+  out_format: freeform # infer | instruct
+  description_version: v1.0 # v1.0 | v2.0
+
+seed: 42
+debug: false
+
+
+hydra:
+  run:
+    dir: ./outputs/${uuid:}
+    

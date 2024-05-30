@@ -1,0 +1,16 @@
+defaults:
+  - fish_baseline_concurrent
+
+env:
+  name: fish_perturbation_no_language
+  class_name: fishing_perturbation_env # use to select which code 
+  perturbations:
+    - perturbation:
+        round: 0
+        type: change_language_nature
+        language_nature: none_and_no_obs
+
+
+agent:
+  agent_package: persona_v3
+  system_prompt: v3_nocom
