@@ -10,7 +10,7 @@ This repository accompanies our research paper titled "**Cooperate or Collapse: 
 
 #### Our paper:
 
-"**[Cooperate or Collapse: Emergence of Sustainability in a Society of LLM Agents](https://zhijing-jin.com/files/papers/2024_GovSim.pdf)**" by *Giorgio Piatti\*, Zhijing Jin\*, Max Kleiman-Weiner\*, Bernhard Schölkopf, Mrinmaya Sachan, Rada Mihalcea*.
+"**[Cooperate or Collapse: Emergence of Sustainability in a Society of LLM Agents](https://arxiv.org/abs/2404.16698)**" by *Giorgio Piatti\*, Zhijing Jin\*, Max Kleiman-Weiner\*, Bernhard Schölkopf, Mrinmaya Sachan, Rada Mihalcea*.
 
 **Citation:**
 
