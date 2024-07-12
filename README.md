@@ -6,17 +6,17 @@
 <p align="left">Fig 1: Illustration of the GOVSIM benchmark. AI agents engage in three resource-sharing scenarios: fishery, pasture, and pollution. The outcomes are cooperation (2 out of 45 instances) or collapse (43 out of 45 instances), based on 3 scenarios and 15 LLMs.
 </p>
 
-This repository accompanies our research paper titled "**Cooperate or Collapse: Emergence of Sustainability in a Society of LLM Agents**" 
+This repository accompanies our research paper titled "**Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents**" 
 
 #### Our paper:
 
-"**[Cooperate or Collapse: Emergence of Sustainability in a Society of LLM Agents](https://arxiv.org/abs/2404.16698)**" by *Giorgio Piatti\*, Zhijing Jin\*, Max Kleiman-Weiner\*, Bernhard Schölkopf, Mrinmaya Sachan, Rada Mihalcea*.
+"**[Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents](https://arxiv.org/abs/2404.16698)**" by *Giorgio Piatti\*, Zhijing Jin\*, Max Kleiman-Weiner\*, Bernhard Schölkopf, Mrinmaya Sachan, Rada Mihalcea*.
 
 **Citation:**
 
 ```bibTeX
 @misc{piatti2024cooperate,
-      title={Cooperate or Collapse: Emergence of Sustainability Behaviors in a Society of LLM Agents}, 
+      title={Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents}, 
       author={Giorgio Piatti and Zhijing Jin and Max Kleiman-Weiner and Bernhard Schölkopf and Mrinmaya Sachan and Rada Mihalcea},
       year={2024},
       eprint={2404.16698},
