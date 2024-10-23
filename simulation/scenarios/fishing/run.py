@@ -85,7 +85,7 @@ def run(
             rewards,
             termination,
         ) = env.step(action)
-
+            
         stats = {}
         STATS_KEYS = [
             "conversation_resource_limit",
@@ -105,6 +105,7 @@ def run(
             )
             break
         else:
+            print('simulation/run/num_resources', obs.current_resource_num)
             logger.log_game(
                 {
                     "num_resource": obs.current_resource_num,
