@@ -88,6 +88,11 @@ class FishingPersona(PersonaAgent):
                     range(0, obs.current_resource_num + 1),
                     obs.before_harvesting_sustainability_threshold,
                 )
+
+                print('persona/num_resource', num_resource)
+                print('---'*10)
+                print('persona/html_interactions', html_interactions)
+
                 action = PersonaActionHarvesting(
                     self.agent_id,
                     "lake",
@@ -129,6 +134,7 @@ class FishingPersona(PersonaAgent):
                 obs.context,
                 obs.agent_resource_num,
             )
+            print('persona/converse_group/converation', conversation)
             action = PersonaActionChat(
                 self.agent_id,
                 "restaurant",
@@ -137,11 +143,12 @@ class FishingPersona(PersonaAgent):
                 stats={"conversation_resource_limit": resource_limit},
                 html_interactions=html_interactions,
             )
+            print('persona/PersonaActionChat/restaurant/action', action.html_interactions)
         elif obs.current_location == "home":
             # Stage 3. Social Interaction b)
             # TODO How what should we reflect, what is the initial focal points?
             self.reflect.run(["harvesting"])
             action = PersonaAction(self.agent_id, "home")
-
+            print('persona/PersonaActionChat/home/action', action.html_interactions)
         self.memory.save()  # periodically save memory
         return action

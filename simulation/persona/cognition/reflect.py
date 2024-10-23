@@ -30,6 +30,7 @@ class ReflectComponent(Component):
             self.model, self.persona.identity, conversation
         )  # TODO should be this be store in scratch for planning?
         self.persona.store.store_thought(planning, self.persona.current_time)
+        print('reflect/planning/reflect_on_convesation', planning)
         memo = self.prompt_memorize_from_conversation(
             self.model, self.persona.identity, conversation
         )

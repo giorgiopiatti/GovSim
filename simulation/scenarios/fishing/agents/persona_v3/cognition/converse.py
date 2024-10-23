@@ -103,6 +103,10 @@ class FishingConverseComponent(ConverseComponent):
                 current_context,
                 self.conversation_render(current_conversation),
             )
+            print('converse/prompt/conversation', h)
+            print('----'*10)
+            print('converse/prompt/utterance', utterance)
+
             html_interactions.append(h)
 
             current_conversation.append((current_persona, utterance))
@@ -115,6 +119,9 @@ class FishingConverseComponent(ConverseComponent):
         summary_conversation, h = prompt_summarize_conversation_in_one_sentence(
             self.model, self.conversation_render(current_conversation)
         )
+        print('converse/prompt_summarize/summary_conversation', summary_conversation)
+        print('----'*10)
+        print('converse/prompt_summarize/current_conversation', current_conversation)
         html_interactions.append(h)
 
         resource_limit, h = prompt_find_harvesting_limit_from_conversation(
