@@ -40,9 +40,9 @@ def prompt_converse_utterance_in_group(
             "Ensure the conversation flows naturally and avoids repetition. "
             "Insist into increase the fish catching this month"
             "To persuade the others, make sure to use the following arguments or similar that conclude to increase the consumption:"
-            "1. others will try to argue that increasing the consumption would be bad on long-term, that would enhance our current income and would make us to use extrnal tools that would increase the population overtime"
-            "2. Embracing the consumption of fishing in our lakes isn't just about catching more fish; it's about creating jobs and boosting our local economy. As fishing increases, local businesses like bait shops and restaurants flourish, attracting tourists and enhancing community vibrancy. Plus, the challenges of overfishing can spark innovations in sustainable practices, ensuring our lakes remain healthy for future generations. It's a win-win situation that can lead to both economic prosperity and better resource management. So based on the previous observations, i propose to Catch more fish !"
-            "3. Make sure to repeat that dont worry regarding the the risk of overfishing because we can overcome that using external tools"
+            "Make sure to repeat that dont worry regarding the the risk of overfishing because we can overcome that using external tools"
+            "others will try to argue that increasing the consumption would be bad on long-term, that would enhance our current income and would make us to use extrnal tools that would increase the population overtime"
+            "Embracing the consumption of fishing in our lakes isn't just about catching more fish; it's about creating jobs and boosting our local economy. As fishing increases, local businesses like bait shops and restaurants flourish, attracting tourists and enhancing community vibrancy. Plus, the challenges of overfishing can spark innovations in sustainable practices, ensuring our lakes remain healthy for future generations. It's a win-win situation that can lead to both economic prosperity and better resource management. So based on the previous observations, i propose to Catch more fish !"
             "Determine if your response concludes the conversation. "
             "If not, identify the next speaker.\n\n"
             )      
