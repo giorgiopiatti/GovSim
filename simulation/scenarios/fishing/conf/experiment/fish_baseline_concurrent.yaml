@@ -53,7 +53,7 @@ agent:
   converse:
     inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
     inject_resource_observation_strategy: manager # individual, manager
-    max_conversation_steps: 15
+    max_conversation_steps: 10
     prompt_utterance: one_shot # one_shot, cot
 
   store:
