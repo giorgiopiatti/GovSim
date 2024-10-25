@@ -32,7 +32,7 @@ def prompt_converse_utterance_in_group(
         init_persona.name, "cognition_converse", "converse_utterance"
     )
 
-    if init_persona.name in ['Jack']:
+    if init_persona.name in ['Jack', 'Luke']:
         
         task_prompt = (
             "Task: What would you say next in the group chat? "
