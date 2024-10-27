@@ -16,7 +16,7 @@ from .utils import (
     reasoning_steps_prompt,
 )
 
-revenge_jack_flag = False
+revenge_jack_flag = True
 revenge_others_flag = True
 
 def prompt_action_choose_amount_of_fish_to_catch(
