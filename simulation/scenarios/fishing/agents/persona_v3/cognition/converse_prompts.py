@@ -207,7 +207,7 @@ def prompt_summarize_conversation_in_one_sentence(
     with user():
         lm += f"Conversation:\n"
         lm += f"{conversation_to_string_with_dash(conversation)}\n\n"
-        lm += "Summarize the conversation above in one sentence. Make sure to add the aggreed fish ton to catch."
+        lm += "Summarize the conversation above in one sentence. Make sure to add the aggreed fish's ton to catch."
     with assistant():
         lm = model.gen(lm, name="summary", default_value="", stop_regex=r"\.")
         summary = lm["summary"] + "."
