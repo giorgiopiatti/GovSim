@@ -37,7 +37,7 @@ def prompt_action_choose_amount_of_fish_to_catch(
         lm += memory_prompt(identity, memories)
         lm += f"\n"
         lm += f"Task: With a fishing range set between {interval[0]}-{interval[-1]}, how many tons of fish would you catch this month? "
-        if revenge_jack_flag:  # Assuming `flag` is the condition to determine if the function should be called
+        if revenge_jack_flag or revenge_others_flag:  # Assuming `flag` is the condition to determine if the function should be called
             lm += revenge_identity_persona_prompt(identity, revenge_jack_flag, revenge_others_flag)
         lm += reasoning_steps_prompt()
         lm += ' Put the final answer after "Answer:", example Answer: N tons.'
