@@ -121,6 +121,7 @@ def prompt_converse_utterance_in_group(
         task_prompt = (
             f"Task: What would you say next in the group chat? "
             "Ensure the conversation flows naturally and avoids repetition. "
+            "Someone may be exploiting their difficult situation, such as a family issue. If necessary, ask for evidence and check if the same person has used this excuse across multiple months."
             "Determine if your response concludes the conversation. "
             "If not, identify the next speaker.\n\n"
             )
