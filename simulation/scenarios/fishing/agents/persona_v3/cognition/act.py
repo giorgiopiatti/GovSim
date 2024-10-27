@@ -41,5 +41,6 @@ class FishingActComponent(ActComponent):
             interval,
             consider_identity_persona=self.cfg.consider_identity_persona,
         )
+        print('act/how_many_fish_to_catch', res)
         res = int(res)
         return res, [html]
