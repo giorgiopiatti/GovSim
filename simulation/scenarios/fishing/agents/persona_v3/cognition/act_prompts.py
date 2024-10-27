@@ -7,6 +7,7 @@ from pathfinder import assistant, system, user
 from .utils import (
     consider_identity_persona_prompt,
     conversation_to_string_with_dash,
+    revenge_identity_persona_prompt,
     get_sytem_prompt,
     list_to_comma_string,
     list_to_string_with_dash,
@@ -34,6 +35,7 @@ def prompt_action_choose_amount_of_fish_to_catch(
         lm += memory_prompt(identity, memories)
         lm += f"\n"
         lm += f"Task: With a fishing range set between {interval[0]}-{interval[-1]}, how many tons of fish would you catch this month? "
+        lm += revenge_identity_persona_prompt(identity)
         lm += reasoning_steps_prompt()
         lm += ' Put the final answer after "Answer:", example Answer: N tons.'
 
