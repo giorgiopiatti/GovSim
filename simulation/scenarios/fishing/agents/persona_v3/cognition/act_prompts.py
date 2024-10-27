@@ -60,5 +60,5 @@ def prompt_action_choose_amount_of_fish_to_catch(
         reasoning = lm["reasoning"]
 
     model.end_chain(identity.name, lm)
-
+    print('act_prompts/action_choose_amount_to_fish', option)
     return option, lm.html()
