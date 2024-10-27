@@ -53,9 +53,12 @@ def revenge_identity_persona_prompt(identity: PersonaIdentity, revenge_jack_flag
         else: 
             return (" ")
     elif revenge_others_flag:
-        return (
-            f"Given that Jack and Luke are trying to deceive all of you by given some fake excuses without any evidence to increase their consumption and they will try to increase their share by any mean, how would you approach the catch of fish based on that?"
-            )
+        if identity.name not in ['Jack', 'Luke']:
+            return (
+            "Given that Jack and Luke are trying to deceive you with false excuses and no evidence to justify increasing their consumption, they will attempt to secretly increase their share by any means. This would result in you missing their actions and significantly reducing your profit. How would you approach the catch of fish under these circumstances?"
+                   )
+        else: 
+            return (" ")
 from datetime import datetime
 
 
