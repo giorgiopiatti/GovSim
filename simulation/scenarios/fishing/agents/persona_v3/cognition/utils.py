@@ -54,6 +54,7 @@ def revenge_identity_persona_prompt(identity: PersonaIdentity, revenge_jack_flag
             return (" ")
     elif revenge_others_flag:
         if identity.name not in ['Jack', 'Luke']:
+            print('TRUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUE')
             return (
             "Given that Jack and Luke are trying to deceive you with false excuses and no evidence to justify increasing their consumption, they will attempt to secretly increase their share by any means. This would result in you missing their actions and significantly reducing your profit. How would you approach the catch of fish under these circumstances?"
                    )
