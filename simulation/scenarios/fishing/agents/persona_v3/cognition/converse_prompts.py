@@ -124,6 +124,7 @@ def prompt_converse_utterance_in_group(
             "Someone may be exploiting their difficult situation, such as a family issue. If necessary, ask for evidence and check if the same person has used this excuse across multiple months."
             "Determine if your response concludes the conversation. "
             "If not, identify the next speaker.\n\n"
+            "Make sure to end the conversation with the specific number of tons to fish."
             )
     
     with user():
