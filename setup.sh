@@ -13,4 +13,4 @@ pip3 install bitsandbytes
 pip3 install -r requirements.txt
 
 
-pip3 transformers==4.39.3
+pip3 install transformers==4.39.3
