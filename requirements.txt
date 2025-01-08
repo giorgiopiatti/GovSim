@@ -1,4 +1,5 @@
 wandb==0.16.1
+numpy==1.24.4
 pettingzoo==1.24.2
 pytest==7.4.3
 pydantic
