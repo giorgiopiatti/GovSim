@@ -7,10 +7,10 @@ conda install conda-forge::weasyprint -y
 conda install -c conda-forge python-kaleido -y
 
 pip3 install -r pathfinder/requirements.txt
-pip3 install autogptq
+pip3 install auto-gptq
 pip3 install bitsandbytes
 
 pip3 install -r requirements.txt
 
 
-pip3 install transformers==4.39.3
+pip3 install transformers
