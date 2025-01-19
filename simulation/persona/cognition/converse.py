@@ -1,5 +1,5 @@
-from simulation.utils import ModelWandbWrapper
 from pathfinder import assistant, system, user
+from simulation.utils import ModelWandbWrapper
 
 from ..common import PersonaIdentity
 from .component import Component
@@ -16,6 +16,12 @@ class ConverseComponent(Component):
 
     """
 
-    def __init__(self, model: ModelWandbWrapper, retrieve: RetrieveComponent, cfg=None):
-        super().__init__(model, cfg)
+    def __init__(
+        self,
+        model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
+        retrieve: RetrieveComponent,
+        cfg=None,
+    ):
+        super().__init__(model, model_framework, cfg)
         self.retrieve = retrieve

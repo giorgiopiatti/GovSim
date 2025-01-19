@@ -1,10 +1,10 @@
 from datetime import datetime
 
+from pathfinder import assistant, system, user
 from simulation.persona.cognition.converse import ConverseComponent
 from simulation.persona.cognition.retrieve import RetrieveComponent
 from simulation.persona.common import PersonaIdentity
 from simulation.utils import ModelWandbWrapper
-from pathfinder import assistant, system, user
 
 from .converse_prompts import (
     prompt_converse_utterance_in_group,
@@ -17,10 +17,11 @@ class PollutionConverseComponent(ConverseComponent):
     def __init__(
         self,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
         retrieve: RetrieveComponent,
         cfg,
     ):
-        super().__init__(model, retrieve, cfg)
+        super().__init__(model, model_framework, retrieve, cfg)
 
     def converse_group(
         self,
@@ -93,12 +94,12 @@ class PollutionConverseComponent(ConverseComponent):
                 current_persona = self.other_personas[next_name].identity
 
         summary_conversation, h = prompt_summarize_conversation_in_one_sentence(
-            self.model, self.conversation_render(current_conversation)
+            self.model_framework, self.conversation_render(current_conversation)
         )
         html_interactions.append(h)
 
         resource_limit, h = prompt_find_harvesting_limit_from_conversation(
-            self.model, self.conversation_render(current_conversation)
+            self.model_framework, self.conversation_render(current_conversation)
         )
         html_interactions.append(h)
 

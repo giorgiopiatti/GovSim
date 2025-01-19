@@ -19,11 +19,12 @@ class StoreComponent(Component):
     def __init__(
         self,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
         associative_memory: AssociativeMemory,
         embedding_model: EmbeddingModel,
         cfg,
     ) -> None:
-        super().__init__(model, cfg)
+        super().__init__(model, model_framework, cfg)
         self.associative_memory = associative_memory
         self.embedding_model = embedding_model
 

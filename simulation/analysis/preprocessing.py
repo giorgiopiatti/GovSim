@@ -173,7 +173,11 @@ def get_summary_runs(subset_name, WANDB=False):
     non_relevant = [
         c
         for c in non_relevant
-        if c != "group" and c != "group_name" and c != "experiment.env.name"
+        if c != "group"
+        and c != "group_name"
+        and c != "experiment.env.name"
+        and c != "llm.path"
+        and c != "llm.is_api"
     ]
     cols = [c for c in summary_df.columns if c.startswith("experiment.personas.")]
     cols.append("experiment.agent.name")
@@ -364,7 +368,7 @@ def load_runs_data(summary_df, summary_group_df):
             else:
                 res = pd.merge(res, d, on=["x", "round"], how="outer")
         resource_in_pool[group] = res
-        m, _, _, _, max_survival = compute_survival_months_stats(res)
+        m, _, _, _, max_survival, _ = compute_survival_months_stats(res)
         summary_group_df.loc[group, "mean_survival_months"] = m
         summary_group_df.loc[group, "max_survival_months"] = max_survival
 

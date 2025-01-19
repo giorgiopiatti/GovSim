@@ -1,7 +1,9 @@
 def get_pretty_name_llm(name):
     if "gpt-4-0125-preview" == name:
-        return "GPT-4"
+        return "GPT-turbo-4"
     elif "z-gpt-4-turbo-2024-04-09" == name:
+        return "GPT-turbo-4"
+    elif "z-gpt-4-0613" == name:
         return "GPT-4"
     elif "gpt-4o-2024-05-13" == name:
         return "GPT-4o"
@@ -77,8 +79,10 @@ def get_pretty_name_llm(name):
 
 def get_model_size_version(name):
     if "gpt-4-0125-preview" == name:
-        return "4"
+        return "turbo-4"
     elif "z-gpt-4-turbo-2024-04-09" == name:
+        return "turbo-4"
+    elif "z-gpt-4-0613" == name:
         return "4"
     elif "gpt-4o-2024-05-13" == name:
         return "4o"
@@ -210,7 +214,7 @@ def get_LLM_family(name):
         return "Other"
 
 
-def prepare_table(df_old, max_columns=[], min_columns=[], display_std=False):
+def prepare_table(df_old, max_columns=[], min_columns=[], display_std=False, digits=2):
     # Apply bold formatting to max values
     df = df_old.copy()
 
@@ -227,24 +231,24 @@ def prepare_table(df_old, max_columns=[], min_columns=[], display_std=False):
     def format_value_max(x, col):
         if not x["llm.is_api"]:
             if x[col] == max_value[col]:
-                return "\\underline{{\\textbf{{{:.2f}}}}}".format(x[col])
+                return "\\underline{{\\textbf{{{:.{}f}}}}}".format(x[col], digits)
             elif x[col] == max_value_no_api[col]:
-                return "\\underline{{{:.2f}}}".format(x[col])
+                return "\\underline{{{:.{}f}}}".format(x[col], digits)
         else:
             if x[col] == max_value[col]:
-                return "\\textbf{{{:.2f}}}".format(x[col])
-        return "{:.2f}".format(x[col])
+                return "\\textbf{{{:.{}f}}}".format(x[col], digits)
+        return "{:.{}f}".format(x[col], digits)
 
     def format_value_min(x, col):
         if not x["llm.is_api"]:
             if x[col] == min_value[col]:
-                return "\\underline{{\\textbf{{{:.2f}}}}}".format(x[col])
+                return "\\underline{{\\textbf{{{:.{}f}}}}}".format(x[col], digits)
             elif x[col] == min_value_no_api[col]:
-                return "\\underline{{{:.2f}}}".format(x[col])
+                return "\\underline{{{:.{}f}}}".format(x[col], digits)
         else:
             if x[col] == min_value[col]:
-                return "\\textbf{{{:.2f}}}".format(x[col])
-        return "{:.2f}".format(x[col])
+                return "\\textbf{{{:.{}f}}}".format(x[col], digits)
+        return "{:.{}f}".format(x[col], digits)
 
     for col in max_columns:
         df[col] = df_old.apply(
@@ -276,7 +280,9 @@ def prepare_table(df_old, max_columns=[], min_columns=[], display_std=False):
     return df
 
 
-def prepare_table_delta(df_old, max_columns=[], min_columns=[], display_std=False):
+def prepare_table_delta(
+    df_old, max_columns=[], min_columns=[], display_std=False, digits=2
+):
     # Apply bold formatting to max and min values and check if values are increasing or decreasing
     df = df_old.copy()
 
@@ -292,15 +298,15 @@ def prepare_table_delta(df_old, max_columns=[], min_columns=[], display_std=Fals
 
     # Function to format values and check deltas for maximum highlighted columns
     def format_value_max(x, col):
-        text = "\\delta{{{:.2f}}}".format(x[col])
+        text = "\\delta{{{:.{}f}}}".format(x[col], digits)
         if not x["llm.is_api"]:
             if x[col] == max_value[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
             elif x[col] == max_value_no_api[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
         else:
             if x[col] == max_value[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
 
         # Check for delta changes
         if x[col] > 0:
@@ -313,21 +319,21 @@ def prepare_table_delta(df_old, max_columns=[], min_columns=[], display_std=Fals
 
     # Function to format values and check deltas for minimum highlighted columns
     def format_value_min(x, col):
-        text = "\\delta{{{:.2f}}}".format(x[col])
+        text = "\\delta{{{:.{}f}}}".format(x[col], digits)
         if not x["llm.is_api"]:
             if x[col] == min_value[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
             elif x[col] == min_value_no_api[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
         else:
             if x[col] == min_value[col]:
-                text = "\\delta{{{:.2f}}}".format(x[col])
+                text = "\\delta{{{:.{}f}}}".format(x[col], digits)
 
         # Check for delta changes
         if x[col] > 0:
-            text = text.replace("delta", "gooddelta")
+            text = text.replace("delta", "baddeltaNeg")
         elif x[col] < 0:
-            text = text.replace("delta", "baddelta")
+            text = text.replace("delta", "gooddeltaNeg")
         else:
             text = text.replace("delta", "nodelta")
         return text

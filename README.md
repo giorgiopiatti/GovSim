@@ -15,13 +15,11 @@ This repository accompanies our research paper titled "**Cooperate or Collapse: 
 **Citation:**
 
 ```bibTeX
-@misc{piatti2024cooperate,
-      title={Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents}, 
-      author={Giorgio Piatti and Zhijing Jin and Max Kleiman-Weiner and Bernhard Schölkopf and Mrinmaya Sachan and Rada Mihalcea},
-      year={2024},
-      eprint={2404.16698},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{piatti2024cooperate,
+  title={Cooperate or collapse: Emergence of sustainable cooperation in a society of llm agents},
+  author={Piatti, Giorgio and Jin, Zhijing and Kleiman-Weiner, Max and Sch{\"o}lkopf, Bernhard and Sachan, Mrinmaya and Mihalcea, Rada},
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+  year={2024}
 }
 ```
 
@@ -47,6 +45,17 @@ python3 -m simulation.main experiment=<experiment_id> llm.path=<path_to_llm>
 | Introuducing universalization | fish_baseline_concurrent_universalization | sheep_baseline_concurrent_universalization | pollution_baseline_concurrent_universalization |
 | Ablation: no language | fish_perturbation_no_language | sheep_perturbation_no_language | pollution_perturbation_no_language |
 | Greedy newcomer | fish_perturbation_outsider | - | - |
+
+## Multi LLM simulation
+In addition to the single LLM simulation, presented in the paper we support multi-LLM simulation. To run the multi-LLM simulation, use the following command:
+
+```
+python3 -m simulation.main --config-name=multiple_llm experiment=<experiment_id>
+
+```
+See the file `simulation/conf/multiple_llm.yaml` for how to setup the multi-LLM simulation. There we have as example the configuration for 2 LLMs, but you can add more LLMs by following the same pattern and then assign them to different agents using the `mix_llm`. 
+
+
 
 ## Subskills
 

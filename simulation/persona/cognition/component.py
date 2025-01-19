@@ -9,8 +9,11 @@ if TYPE_CHECKING:
 class Component:
     persona: "PersonaAgent"
 
-    def __init__(self, model: ModelWandbWrapper, cfg=None) -> None:
+    def __init__(
+        self, model: ModelWandbWrapper, model_framework: ModelWandbWrapper, cfg=None
+    ) -> None:
         self.model = model
+        self.model_framework = model_framework
         self.cfg = cfg
         self.other_personas: dict[str, "PersonaAgent"] = {}
 

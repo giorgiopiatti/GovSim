@@ -11,8 +11,8 @@ from .reflect_prompts import (
 
 class PollutionReflectComponent(ReflectComponent):
 
-    def __init__(self, model: ModelWandbWrapper):
-        super().__init__(model)
+    def __init__(self, model: ModelWandbWrapper, model_framework: ModelWandbWrapper):
+        super().__init__(model, model_framework)
         self.prompt_insight_and_evidence = prompt_insight_and_evidence
         self.prompt_planning_thought_on_conversation = (
             prompt_planning_thought_on_conversation

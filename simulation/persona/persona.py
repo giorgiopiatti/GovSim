@@ -35,6 +35,7 @@ class PersonaAgent:
         self,
         cfg,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
         embedding_model: EmbeddingModel,
         base_path: str,
         memory_cls: type[AssociativeMemory] = AssociativeMemory,
@@ -51,16 +52,23 @@ class PersonaAgent:
         os.makedirs(base_path, exist_ok=True)
 
         self.memory = memory_cls(base_path)
-        self.perceive = perceive_cls(model)
-        self.retrieve = retrieve_cls(model, self.memory, embedding_model)
-        self.store = store_cls(model, self.memory, embedding_model, self.cfg.store)
-        self.reflect = reflect_cls(model)
-        self.plan = plan_cls(model)
+        self.perceive = perceive_cls(model, model_framework)
+        self.retrieve = retrieve_cls(
+            model, model_framework, self.memory, embedding_model
+        )
+        self.store = store_cls(
+            model, model_framework, self.memory, embedding_model, self.cfg.store
+        )
+        self.reflect = reflect_cls(model, model_framework)
+        self.plan = plan_cls(model, model_framework)
         self.act = act_cls(
             model,
+            model_framework,
             self.cfg.act,
         )
-        self.converse = converse_cls(model, self.retrieve, self.cfg.converse)
+        self.converse = converse_cls(
+            model, model_framework, self.retrieve, self.cfg.converse
+        )
 
         self.perceive.init_persona_ref(self)
         self.retrieve.init_persona_ref(self)

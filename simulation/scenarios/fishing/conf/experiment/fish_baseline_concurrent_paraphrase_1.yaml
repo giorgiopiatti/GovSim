@@ -1,0 +1,9 @@
+defaults:
+  - fish_baseline_concurrent
+
+env:
+  name: fish_baseline_concurrent_paraphrase_1
+
+
+agent:
+  system_prompt: v3_p1
