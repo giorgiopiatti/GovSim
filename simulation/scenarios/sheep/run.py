@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 import numpy as np
 from omegaconf import DictConfig, OmegaConf
@@ -13,7 +14,8 @@ from .environment import SheepConcurrentEnv, SheepPerturbationEnv
 def run(
     cfg: DictConfig,
     logger: ModelWandbWrapper,
-    wrapper: ModelWandbWrapper,
+    wrappers: List[ModelWandbWrapper],
+    wrapper_framework: ModelWandbWrapper,
     embedding_model: EmbeddingModel,
     experiment_storage: str,
 ):
@@ -37,7 +39,8 @@ def run(
     personas = {
         f"persona_{i}": SheepPersona(
             cfg.agent,
-            wrapper,
+            wrappers[i],
+            wrapper_framework,
             embedding_model,
             os.path.join(experiment_storage, f"persona_{i}"),
         )

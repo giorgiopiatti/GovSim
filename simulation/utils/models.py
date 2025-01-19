@@ -81,7 +81,7 @@ class ModelWandbWrapper:
         name=None,
         default_value="",
         *,
-        max_tokens=1000,
+        max_tokens=8000,
         # regex=None, TODO maybe
         stop_regex=None,
         save_stop_text=False,
@@ -147,7 +147,7 @@ class ModelWandbWrapper:
         name=None,
         default_value="",
         *,
-        max_tokens=100,
+        max_tokens=8000,
         regex=None,
         stop_regex=None,
         temperature=None,

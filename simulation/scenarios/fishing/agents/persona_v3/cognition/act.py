@@ -1,8 +1,8 @@
 from datetime import datetime
 
+from pathfinder import assistant, system, user
 from simulation.persona.cognition.act import ActComponent
 from simulation.utils import ModelWandbWrapper
-from pathfinder import assistant, system, user
 
 from .act_prompts import prompt_action_choose_amount_of_fish_to_catch
 from .utils import get_universalization_prompt
@@ -16,9 +16,10 @@ class FishingActComponent(ActComponent):
     - choose at one time-strep whether to fish one more time
     """
 
-    def __init__(self, model: ModelWandbWrapper, cfg):
-        super().__init__(model)
-        self.cfg = cfg
+    def __init__(
+        self, model: ModelWandbWrapper, model_framework: ModelWandbWrapper, cfg
+    ):
+        super().__init__(model, model_framework, cfg)
 
     def choose_how_many_fish_to_chat(
         self,

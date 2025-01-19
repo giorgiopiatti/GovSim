@@ -44,7 +44,6 @@ agent:
   agent_package: persona_v3
   system_prompt: v3
   cot_prompt: think_step_by_step # think_step_by_step | deep_breath
-  name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
   act:
     universalization_prompt: false # true, false
     harvest_strategy: one_step #or: one_step, suistanability_guided, suistanability_idea

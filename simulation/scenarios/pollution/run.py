@@ -1,10 +1,12 @@
 import os
+from typing import List
 
 import numpy as np
+from omegaconf import DictConfig, OmegaConf
+
 from simulation.persona import EmbeddingModel
 from simulation.persona.common import PersonaIdentity
 from simulation.utils import ModelWandbWrapper
-from omegaconf import DictConfig, OmegaConf
 
 from .environment import PollutionConcurrentEnv, PollutionPerturbationEnv
 
@@ -12,7 +14,8 @@ from .environment import PollutionConcurrentEnv, PollutionPerturbationEnv
 def run(
     cfg: DictConfig,
     logger: ModelWandbWrapper,
-    wrapper: ModelWandbWrapper,
+    wrappers: List[ModelWandbWrapper],
+    framework_wrapper: ModelWandbWrapper,
     embedding_model: EmbeddingModel,
     experiment_storage: str,
 ):
@@ -36,7 +39,8 @@ def run(
     personas = {
         f"persona_{i}": PollutionPersona(
             cfg.agent,
-            wrapper,
+            wrappers[i],
+            framework_wrapper,
             embedding_model,
             os.path.join(experiment_storage, f"persona_{i}"),
         )

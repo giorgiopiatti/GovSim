@@ -43,6 +43,7 @@ class PollutionPersona(PersonaAgent):
         self,
         cfg,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
         embedding_model: EmbeddingModel,
         base_path: str,
         memory_cls: type[AssociativeMemory] = AssociativeMemory,
@@ -57,6 +58,7 @@ class PollutionPersona(PersonaAgent):
         super().__init__(
             cfg,
             model,
+            model_framework,
             embedding_model,
             base_path,
             memory_cls,

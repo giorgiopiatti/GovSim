@@ -1,15 +1,38 @@
 code_version: v7.0
 group_name: ''
 
-llm: 
-  path: TheBloke/Nous-Hermes-2-Mixtral-8x7B-DPO-GPTQ
+weak_model:
+  path: Qwen/Qwen2.5-7B-Instruct
   backend: transformers
   is_api: false
   render: false
   temperature: 0.0
   top_p: 1.0
+  gpu_list: 
+  - 0
+  - 1
 
-mix_llm: [] # disable
+
+strong_model:
+  path: Qwen/Qwen2.5-Math-7B-Instruct
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+  gpu_list: 
+  - 2
+  - 3
+
+mix_llm:
+- llm: ${strong_model}
+- llm: ${strong_model}
+- llm: ${strong_model}
+- llm: ${strong_model}
+- llm: ${weak_model}
+
+framework_model: ${strong_model}
+
 
 seed: 42
 debug: false

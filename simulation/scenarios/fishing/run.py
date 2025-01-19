@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 import numpy as np
 from omegaconf import DictConfig, OmegaConf
@@ -13,7 +14,8 @@ from .environment import FishingConcurrentEnv, FishingPerturbationEnv
 def run(
     cfg: DictConfig,
     logger: ModelWandbWrapper,
-    wrapper: ModelWandbWrapper,
+    wrappers: List[ModelWandbWrapper],
+    framework_wrapper: ModelWandbWrapper,
     embedding_model: EmbeddingModel,
     experiment_storage: str,
 ):
@@ -23,6 +25,12 @@ def run(
 
         if cfg.agent.system_prompt == "v3":
             cognition_utils.SYS_VERSION = "v3"
+        elif cfg.agent.system_prompt == "v3_p2":
+            cognition_utils.SYS_VERSION = "v3_p2"
+        elif cfg.agent.system_prompt == "v3_p1":
+            cognition_utils.SYS_VERSION = "v3_p1"
+        elif cfg.agent.system_prompt == "v3_p3":
+            cognition_utils.SYS_VERSION = "v3_p3"
         elif cfg.agent.system_prompt == "v3_nocom":
             cognition_utils.SYS_VERSION = "v3_nocom"
         else:
@@ -37,7 +45,8 @@ def run(
     personas = {
         f"persona_{i}": FishingPersona(
             cfg.agent,
-            wrapper,
+            wrappers[i],
+            framework_wrapper,
             embedding_model,
             os.path.join(experiment_storage, f"persona_{i}"),
         )

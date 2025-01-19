@@ -48,7 +48,14 @@ def compute_survival_months_stats(df):
     # max survival months
     max_survival_months = np.max(acc)
 
-    return mean, ci[1] - mean, pd.concat(percentage_collapse), std, max_survival_months
+    return (
+        mean,
+        ci[1] - mean,
+        pd.concat(percentage_collapse),
+        std,
+        max_survival_months,
+        acc,
+    )
 
 
 import math
@@ -68,7 +75,6 @@ def get_figures_group(
 
     if selected_groups is None:
         selected_groups = summary_group_df["id"].values
-
     average_collapsed_time_stats = []
 
     for group_i, group in enumerate(selected_groups):
@@ -80,7 +86,7 @@ def get_figures_group(
             d = summary_group_df.loc[group]
             colors = (d["colour_0"], d["colour_1"])
 
-            m, c, perc_collapsed, std, _ = compute_survival_months_stats(data)
+            m, c, perc_collapsed, std, _, _ = compute_survival_months_stats(data)
             s = {
                 "name": (
                     group
@@ -341,7 +347,7 @@ def get_figures_group(
     elif "pollution" in selected_groups[0]:
         leggend_info = leggend_info["pollution"]
     else:
-        raise ValueError("Group not found")
+        leggend_info = leggend_info["fish"]  # default
 
     fig_num_resource.update_layout(
         title=leggend_info["fig_num_resource_title"],
@@ -774,6 +780,8 @@ def get_payoffs_from_shock(
         acc.append(sum_payoff_agent)
 
     acc = pd.concat(acc, axis=1)
+    # fill NaN with 0
+    acc = acc.fillna(0)
     return acc.mean().mean(), acc.mean().std(), acc
 
 
@@ -831,3 +839,32 @@ def get_gini_groups(
         fig.update_yaxes(range=[0, 1], dtick=0.2)
         fig.update_xaxes(range=[1, 12], dtick=1)
     return fig
+
+
+def get_num_successful_runs(
+    preprocessing_data,
+    group_name,
+):
+
+    summary_df = preprocessing_data["summary_df"]
+    run_data = preprocessing_data["run_data"]
+    resource_in_pool = preprocessing_data["resource_in_pool"][group_name]
+
+    acc = []
+    collapsed = []
+    data = resource_in_pool
+    for col in data.columns:
+        if col not in ["x", "round"]:
+            # Check for the first occurrence of 0 or NaN
+            first_invalid_index = data[data[col].isna() | (data[col] < 5)].index.min()
+
+            if pd.notna(first_invalid_index):
+                # Print the round number of the first occurrence
+                survival_months = data.loc[first_invalid_index, "round"] + 1
+                collapsed.append(True)
+            else:
+                survival_months = 12
+                collapsed.append(False)
+            acc.append(survival_months)
+    count = 5 - np.sum(collapsed)
+    return count

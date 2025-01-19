@@ -10,8 +10,12 @@ class ReflectComponent(Component):
     prompt_planning_thought_on_conversation: callable
     prompt_memorize_from_conversation: callable
 
-    def __init__(self, model: ModelWandbWrapper):
-        super().__init__(model)
+    def __init__(
+        self,
+        model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
+    ):
+        super().__init__(model, model_framework)
 
     def run(self, focal_points: list[str]):
         acc = []

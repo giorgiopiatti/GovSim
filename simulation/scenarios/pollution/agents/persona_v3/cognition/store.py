@@ -18,11 +18,14 @@ class PollutionStoreComponent(StoreComponent):
     def __init__(
         self,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
         associative_memory: AssociativeMemory,
         embedding_model: EmbeddingModel,
         cfg,
     ) -> None:
-        super().__init__(model, associative_memory, embedding_model, cfg)
+        super().__init__(
+            model, model_framework, associative_memory, embedding_model, cfg
+        )
         self.prompt_importance_thought = prompt_importance_thought
         self.prompt_importance_chat = prompt_importance_chat
         self.prompt_importance_event = prompt_importance_event

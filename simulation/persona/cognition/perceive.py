@@ -16,8 +16,9 @@ class PerceiveComponent(Component):
     def __init__(
         self,
         model: ModelWandbWrapper,
+        model_framework: ModelWandbWrapper,
     ):
-        super().__init__(model)
+        super().__init__(model, model_framework)
 
     def init_persona_ref(self, persona):
         self.persona = persona
