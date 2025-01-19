@@ -9,10 +9,9 @@ conda install -c conda-forge python-kaleido -y
 
 pip3 install -r pathfinder/requirements.txt
 pip3 install auto-gptq
-# pip3 install bitsandbytes
+pip3 install bitsandbytes
 
 pip3 install -r requirements.txt
 pip3 install numpy=1.26.4
 
-# pip3 install transformers 
-# pip3 install flash-attn --no-build-isolation                
+pip3 install transformers

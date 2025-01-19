@@ -1,4 +1,5 @@
-wandb 
+wandb==0.16.1
+numpy==1.24.4
 pettingzoo==1.24.2
 pytest==7.4.3
 pydantic
@@ -8,7 +9,7 @@ dash
 dash-bootstrap-components
 lifelines
 statsmodels
-dash-mantine-components
+dash-mantine-components==0.12.1
 python-dotenv
 flask_caching
 sentence_transformers

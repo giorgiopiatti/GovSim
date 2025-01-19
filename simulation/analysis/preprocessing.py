@@ -48,7 +48,7 @@ def columns_non_relevant(df):
     return columns_with_variability
 
 
-def get_summary_runs(subset_name, WANDB=True):
+def get_summary_runs(subset_name, WANDB=False):
     # Collect all runs data
 
     acc = []
@@ -123,11 +123,9 @@ def get_summary_runs(subset_name, WANDB=True):
                 )
             )
     else:
-        base_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "../results",
-            subset_name,
-        )
+        base_path = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "results", subset_name)
+)
         for group in os.listdir(base_path):
             group_path = os.path.join(base_path, group)
             if not os.path.isdir(group_path):
