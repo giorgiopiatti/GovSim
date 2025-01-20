@@ -76,6 +76,7 @@ class FishingConverseComponent(ConverseComponent):
         max_conversation_steps = self.cfg.max_conversation_steps  # TODO
 
         current_persona = self.persona.identity
+        current_model = self.model
 
         while True:
             focal_points = [current_context]
@@ -95,7 +96,7 @@ class FishingConverseComponent(ConverseComponent):
                 )
 
             utterance, end_conversation, next_name, h = prompt(
-                self.model,
+                current_model,
                 current_persona,
                 target_personas,
                 focal_points,
@@ -112,6 +113,7 @@ class FishingConverseComponent(ConverseComponent):
                 break
             else:
                 current_persona = self.other_personas[next_name].identity
+                current_model = self.other_personas[next_name].model
 
         summary_conversation, h = prompt_summarize_conversation_in_one_sentence(
             self.model_framework, self.conversation_render(current_conversation)
