@@ -81,10 +81,10 @@ class PersonaAgent:
         self.other_personas: dict[str, PersonaAgent] = {}
         self.other_personas_from_id: dict[str, PersonaAgent] = {}
 
-    def init_persona(self, agent_id: int, identity: PersonaIdentity, social_graph):
+    def init_persona(self, agent_id: int, identity: PersonaIdentity, social_graph, model: ModelWandbWrapper = None):
         self.agent_id = agent_id
         self.identity = identity
-
+        self.model = model
         self.scratch = Scratch(f"{self.base_path}")
 
     def add_reference_to_other_persona(self, persona: "PersonaAgent"):

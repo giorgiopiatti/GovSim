@@ -68,8 +68,12 @@ def run(
     agent_name_to_id["framework"] = "framework"
     agent_id_to_name = {v: k for k, v in agent_name_to_id.items()}
 
-    for persona in personas:
-        personas[persona].init_persona(persona, identities[persona], social_graph=None)
+    for i, persona in enumerate(personas):
+        personas[persona].init_persona(persona,
+                                       identities[persona],
+                                       social_graph=None,
+                                       model = wrappers[i],
+    )
 
     for persona in personas:
         for other_persona in personas:
